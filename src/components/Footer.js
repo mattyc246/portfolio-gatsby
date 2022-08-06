@@ -11,7 +11,9 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 const Container = styled.footer`
-  padding: ${padding.oneRem};
+  width: 90%;
+  margin: 0 auto;
+  padding: ${padding.oneRem} ${padding.twoRem};
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
