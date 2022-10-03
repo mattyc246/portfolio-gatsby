@@ -3,22 +3,36 @@ import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import {
+  IconBrowser,
+  IconServer,
+  IconDatabase,
+  IconBrandOpenSource
+} from '@tabler/icons';
+
+import {
   Box,
   Button,
+  Card,
   Center,
   Container,
   Grid,
   Stack,
+  Tabs,
   Text,
   Title
 } from '@mantine/core';
 
-import Section from '../components/ui/Section';
+import BackendStack from '../components/BackendStack';
 import DangerousHtml from '../components/ui/DangerousHtml';
+import FrontendStack from '../components/FrontendStack';
+import Section from '../components/ui/Section';
+
+import { useMediaQuery } from '@mantine/hooks';
 
 const IndexPage = ({ data }) => {
   const { datoCmsHome } = data;
   const aboutImage = getImage(datoCmsHome.aboutMeImage);
+  const matches = useMediaQuery('(min-width: 980px)');
   return (
     <Container>
       <Section
@@ -61,21 +75,70 @@ const IndexPage = ({ data }) => {
       <Section
         minHeight="100vh"
         title="About Me"
+        fullWidth
         content={
           <Grid gutter="lg">
             <Grid.Col xs={12} md={6}>
-              <DangerousHtml
-                dangerouslySetInnerHTML={{
-                  __html: datoCmsHome?.aboutMeNode?.childMarkdownRemark?.html
-                }}
-              />
+              <Center sx={{ height: '100%' }}>
+                <DangerousHtml
+                  dangerouslySetInnerHTML={{
+                    __html: datoCmsHome?.aboutMeNode?.childMarkdownRemark?.html
+                  }}
+                />
+              </Center>
             </Grid.Col>
             <Grid.Col xs={12} md={6}>
               <Center p="lg">
-                <GatsbyImage image={aboutImage} alt="me" />
+                <Card shadow="lg">
+                  <GatsbyImage image={aboutImage} alt="me" />
+                </Card>
               </Center>
             </Grid.Col>
           </Grid>
+        }
+      />
+      <Section
+        minHeight="100vh"
+        title="Tech Stacks"
+        fullWidth
+        content={
+          <Card my="lg" shadow="lg">
+            <Tabs
+              orientation={matches ? 'vertical' : 'horizontal'}
+              defaultValue="frontend"
+              color="orange"
+            >
+              <Tabs.List>
+                <Tabs.Tab value="frontend" icon={<IconBrowser size={16} />}>
+                  Frontend
+                </Tabs.Tab>
+                <Tabs.Tab value="backend" icon={<IconServer size={16} />}>
+                  Backend
+                </Tabs.Tab>
+                <Tabs.Tab value="database" icon={<IconDatabase size={16} />}>
+                  Database
+                </Tabs.Tab>
+                <Tabs.Tab
+                  value="services"
+                  icon={<IconBrandOpenSource size={16} />}
+                >
+                  Services
+                </Tabs.Tab>
+              </Tabs.List>
+              <Tabs.Panel value="frontend" p="lg">
+                <FrontendStack />
+              </Tabs.Panel>
+              <Tabs.Panel value="backend" p="lg">
+                <BackendStack />
+              </Tabs.Panel>
+              <Tabs.Panel value="database" p="sm">
+                Database tab content
+              </Tabs.Panel>
+              <Tabs.Panel value="services" p="sm">
+                Services tab content
+              </Tabs.Panel>
+            </Tabs>
+          </Card>
         }
       />
     </Container>
