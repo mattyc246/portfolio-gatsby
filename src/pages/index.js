@@ -24,8 +24,10 @@ import {
 
 import BackendStack from '../components/BackendStack';
 import DangerousHtml from '../components/ui/DangerousHtml';
+import DatabaseStack from '../components/DatabaseStack';
 import FrontendStack from '../components/FrontendStack';
 import Section from '../components/ui/Section';
+import ServicesStack from '../components/ServicesStack';
 
 import { useMediaQuery } from '@mantine/hooks';
 
@@ -131,11 +133,11 @@ const IndexPage = ({ data }) => {
               <Tabs.Panel value="backend" p="lg">
                 <BackendStack />
               </Tabs.Panel>
-              <Tabs.Panel value="database" p="sm">
-                Database tab content
+              <Tabs.Panel value="database" p="lg">
+                <DatabaseStack />
               </Tabs.Panel>
-              <Tabs.Panel value="services" p="sm">
-                Services tab content
+              <Tabs.Panel value="services" p="lg">
+                <ServicesStack />
               </Tabs.Panel>
             </Tabs>
           </Card>
