@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import { Box, Divider, Title } from '@mantine/core';
 
-const Section = (props) => {
+const Section = forwardRef((props, ref) => {
   const { content, title, minHeight, fullWidth } = props;
   return (
     <Box
+      ref={ref}
       component="section"
       sx={{
         display: 'flex',
@@ -31,6 +32,6 @@ const Section = (props) => {
       {content}
     </Box>
   );
-};
+});
 
 export default Section;

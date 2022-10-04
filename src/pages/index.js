@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
@@ -33,8 +33,14 @@ import { useMediaQuery } from '@mantine/hooks';
 
 const IndexPage = ({ data }) => {
   const { datoCmsHome } = data;
+  const techStackRef = useRef(null);
   const aboutImage = getImage(datoCmsHome.aboutMeImage);
   const matches = useMediaQuery('(min-width: 980px)');
+
+  const scrollIntoView = (ref) => {
+    ref?.current?.scrollIntoView({ behaviour: 'smooth' });
+  };
+
   return (
     <Container>
       <Section
@@ -64,9 +70,10 @@ const IndexPage = ({ data }) => {
             </Text>
             <Box>
               <Button
+                onClick={() => scrollIntoView(techStackRef)}
                 my="lg"
                 variant="gradient"
-                gradient={{ from: 'orange.7', to: 'orange.3' }}
+                gradient={{ from: 'orange.7', to: 'orange.4' }}
               >
                 See what tech I use
               </Button>
@@ -100,7 +107,8 @@ const IndexPage = ({ data }) => {
         }
       />
       <Section
-        minHeight="100vh"
+        ref={techStackRef}
+        minHeight="80vh"
         title="Tech Stacks"
         fullWidth
         content={
@@ -143,6 +151,38 @@ const IndexPage = ({ data }) => {
           </Card>
         }
       />
+      <Section
+        minHeight="80vh"
+        fullWidth
+        content={
+          <Center>
+            <Stack align="center">
+              <Title order={3} color="orange.5" sx={{ fontSize: '3rem' }}>
+                Get In Touch.
+              </Title>
+              <Box sx={{ maxWidth: '500px', textAlign: 'center' }}>
+                <DangerousHtml
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      datoCmsHome?.contactMessageNode?.childMarkdownRemark?.html
+                  }}
+                />
+              </Box>
+              <Box>
+                <Button
+                  component="a"
+                  href="mailto:mattjcrossdev@gmail.com"
+                  my="lg"
+                  variant="gradient"
+                  gradient={{ from: 'orange.7', to: 'orange.4' }}
+                >
+                  Message Me
+                </Button>
+              </Box>
+            </Stack>
+          </Center>
+        }
+      />
     </Container>
   );
 };
@@ -160,6 +200,11 @@ export const pageQuery = graphql`
       }
       aboutMeImage {
         gatsbyImageData(width: 500, height: 500, placeholder: BLURRED)
+      }
+      contactMessageNode {
+        childMarkdownRemark {
+          html
+        }
       }
     }
   }

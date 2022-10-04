@@ -30,11 +30,11 @@ const HoverCard = styled.div`
 const TechStack = (props) => {
   const { software } = props;
   return (
-    <Grid>
+    <Grid gutter="lg">
       {software?.map((sw) => {
         const image = getImage(sw?.image);
         return (
-          <Grid.Col key={sw?.id} span={6} xs={4} md={2}>
+          <Grid.Col key={sw?.id} span={4} xs={3} md={2}>
             <StyledCard radius="xl" shadow="md">
               <GatsbyImage image={image} alt={sw?.image?.alt} />
               <HoverCard>

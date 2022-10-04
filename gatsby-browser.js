@@ -1,4 +1,5 @@
 import React from 'react';
+import './src/styles/global.css';
 
 import { MantineProvider } from '@mantine/core';
 import { themeObject } from './src/styles/theme';
