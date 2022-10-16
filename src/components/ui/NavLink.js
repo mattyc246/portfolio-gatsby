@@ -38,9 +38,9 @@ const StyledLink = styled(Link)`
 `;
 
 const NavLink = (props) => {
-  const { to, children } = props;
+  const { to, children, ...rest } = props;
   return (
-    <StyledLink activeClassName="active" to={to}>
+    <StyledLink activeClassName="active" to={to} {...rest}>
       {children}
     </StyledLink>
   );
