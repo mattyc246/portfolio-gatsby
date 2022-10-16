@@ -210,4 +210,6 @@ export const pageQuery = graphql`
   }
 `;
 
-export const Head = () => <title>Home Page</title>;
+export const Head = () => (
+  <title>Matthew Cross | Full Stack Web Developer</title>
+);

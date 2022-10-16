@@ -37,11 +37,11 @@ const MobileMenu = () => {
                 Home
               </NavLink>
             </Center>
-            <Center>
+            {/* <Center>
               <NavLink onClick={() => setIsOpen(false)} to="/projects">
                 Projects
               </NavLink>
-            </Center>
+            </Center> */}
             <Center>
               <NavLink onClick={() => setIsOpen(false)} to="/blog">
                 Blog
