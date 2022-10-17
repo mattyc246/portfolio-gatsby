@@ -31,6 +31,12 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-transformer-remark',
     {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [`gatsby-remark-reading-time`]
+      }
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
