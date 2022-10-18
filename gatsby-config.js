@@ -33,7 +33,21 @@ module.exports = {
     {
       resolve: 'gatsby-transformer-remark',
       options: {
-        plugins: [`gatsby-remark-reading-time`]
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 500
+            }
+          },
+          `gatsby-remark-reading-time`,
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              showLineNumbers: false
+            }
+          }
+        ]
       }
     },
     {
