@@ -8,7 +8,12 @@ import MobileMenu from './MobileMenu';
 
 const TopNav = () => {
   return (
-    <Header py="xl" px="xl" withBorder={false}>
+    <Header
+      py="xl"
+      px="xl"
+      sx={{ position: 'absolute', top: 0 }}
+      withBorder={false}
+    >
       <Box
         sx={{
           display: 'flex',

@@ -3,39 +3,26 @@ import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import {
-  IconBrowser,
-  IconServer,
-  IconDatabase,
-  IconBrandOpenSource
-} from '@tabler/icons';
-
-import {
   Box,
-  Button,
   Card,
   Center,
   Container,
   Grid,
   Stack,
-  Tabs,
   Text,
   Title
 } from '@mantine/core';
 
-import BackendStack from '../components/BackendStack';
 import DangerousHtml from '../components/ui/DangerousHtml';
-import DatabaseStack from '../components/DatabaseStack';
-import FrontendStack from '../components/FrontendStack';
+import MovingGradientButton from '../components/ui/MovingGradientButton';
 import Section from '../components/ui/Section';
-import ServicesStack from '../components/ServicesStack';
 
-import { useMediaQuery } from '@mantine/hooks';
+import { colors } from '../styles/colors';
 
 const IndexPage = ({ data }) => {
   const { datoCmsHome } = data;
-  const techStackRef = useRef(null);
+  const contactRef = useRef(null);
   const aboutImage = getImage(datoCmsHome.aboutMeImage);
-  const matches = useMediaQuery('(min-width: 980px)');
 
   const scrollIntoView = (ref) => {
     ref?.current?.scrollIntoView({ behaviour: 'smooth' });
@@ -44,7 +31,7 @@ const IndexPage = ({ data }) => {
   return (
     <Container>
       <Section
-        minHeight="90vh"
+        minHeight="100vh"
         content={
           <Stack my="4rem" spacing="xs">
             <Text
@@ -55,11 +42,21 @@ const IndexPage = ({ data }) => {
             >
               Hello, my name is
             </Text>
-            <Title order={1} color="orange.5" sx={{ fontSize: '4rem' }}>
+            <Title
+              order={1}
+              variant="gradient"
+              gradient={{ from: colors.purple, to: colors.pink, deg: 90 }}
+              sx={{ fontSize: '6rem' }}
+            >
               Matthew Cross.
             </Title>
-            <Title order={2} color="orange.3" sx={{ fontSize: '4rem' }}>
-              Full Stack Software Developer.
+            <Title
+              order={2}
+              variant="gradient"
+              gradient={{ from: colors.teal, to: colors.orange, deg: 90 }}
+              sx={{ fontSize: '4rem' }}
+            >
+              Software Developer.
             </Title>
             <Text
               px="4px"
@@ -69,14 +66,13 @@ const IndexPage = ({ data }) => {
               {datoCmsHome?.introduction}
             </Text>
             <Box>
-              <Button
-                onClick={() => scrollIntoView(techStackRef)}
+              <MovingGradientButton
+                onClick={() => scrollIntoView(contactRef)}
                 my="lg"
-                variant="gradient"
-                gradient={{ from: 'orange.7', to: 'orange.4' }}
+                size="lg"
               >
-                See what tech I use
-              </Button>
+                Get in touch
+              </MovingGradientButton>
             </Box>
           </Stack>
         }
@@ -85,6 +81,8 @@ const IndexPage = ({ data }) => {
         minHeight="100vh"
         title="About Me"
         fullWidth
+        gradientFrom={colors.purple}
+        gradientTo={colors.pink}
         content={
           <Grid gutter="lg">
             <Grid.Col xs={12} md={6}>
@@ -107,51 +105,7 @@ const IndexPage = ({ data }) => {
         }
       />
       <Section
-        ref={techStackRef}
-        minHeight="80vh"
-        title="Tech Stacks"
-        fullWidth
-        content={
-          <Card my="lg" shadow="lg">
-            <Tabs
-              orientation={matches ? 'vertical' : 'horizontal'}
-              defaultValue="frontend"
-              color="orange"
-            >
-              <Tabs.List>
-                <Tabs.Tab value="frontend" icon={<IconBrowser size={16} />}>
-                  Frontend
-                </Tabs.Tab>
-                <Tabs.Tab value="backend" icon={<IconServer size={16} />}>
-                  Backend
-                </Tabs.Tab>
-                <Tabs.Tab value="database" icon={<IconDatabase size={16} />}>
-                  Database
-                </Tabs.Tab>
-                <Tabs.Tab
-                  value="services"
-                  icon={<IconBrandOpenSource size={16} />}
-                >
-                  Services
-                </Tabs.Tab>
-              </Tabs.List>
-              <Tabs.Panel value="frontend" p="lg">
-                <FrontendStack />
-              </Tabs.Panel>
-              <Tabs.Panel value="backend" p="lg">
-                <BackendStack />
-              </Tabs.Panel>
-              <Tabs.Panel value="database" p="lg">
-                <DatabaseStack />
-              </Tabs.Panel>
-              <Tabs.Panel value="services" p="lg">
-                <ServicesStack />
-              </Tabs.Panel>
-            </Tabs>
-          </Card>
-        }
-      />
-      <Section
+        ref={contactRef}
         minHeight="80vh"
         fullWidth
         content={
@@ -169,15 +123,14 @@ const IndexPage = ({ data }) => {
                 />
               </Box>
               <Box>
-                <Button
+                <MovingGradientButton
                   component="a"
                   href="mailto:mattjcrossdev@gmail.com"
                   my="lg"
-                  variant="gradient"
-                  gradient={{ from: 'orange.7', to: 'orange.4' }}
+                  size="lg"
                 >
                   Message Me
-                </Button>
+                </MovingGradientButton>
               </Box>
             </Stack>
           </Center>

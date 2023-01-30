@@ -2,6 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
+import { colors } from '../../styles/colors';
+
 const StyledLink = styled(Link)`
   position: relative;
   z-index: 1;
@@ -18,7 +20,7 @@ const StyledLink = styled(Link)`
     bottom: 0;
     left: -0.25em;
     right: -0.25em;
-    background-color: ${({ theme }) => theme.colors.orange[7]};
+    background-color: ${colors.orange};
     transform-origin: bottom center;
     transform: scaleY(0.1);
     transition: all 0.2s ease-in-out;
@@ -26,13 +28,13 @@ const StyledLink = styled(Link)`
 
   :hover::before {
     transform: scaleY(1);
-    background-color: ${({ theme }) => theme.colors.orange[7]};
+    background-color: ${colors.pink};
   }
 
   &.active {
     ::before {
       transform: scaleY(1);
-      background-color: ${({ theme }) => theme.colors.orange[7]};
+      background-color: ${colors.purple};
     }
   }
 `;
