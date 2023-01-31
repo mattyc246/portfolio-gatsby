@@ -1,19 +1,23 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import { Anchor, Box, Group, Header, Image, MediaQuery } from '@mantine/core';
+import {
+  ActionIcon,
+  Box,
+  Group,
+  Header,
+  MediaQuery,
+  useMantineColorScheme
+} from '@mantine/core';
 
-import Logo from '../images/logo.svg';
 import NavLink from './ui/NavLink';
 import MobileMenu from './MobileMenu';
 
+import { IconSun, IconMoon } from '@tabler/icons';
+
 const TopNav = () => {
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+
   return (
-    <Header
-      py="xl"
-      px="xl"
-      sx={{ position: 'absolute', top: 0 }}
-      withBorder={false}
-    >
+    <Header py="xl" px="xl" withBorder={false}>
       <Box
         sx={{
           display: 'flex',
@@ -21,16 +25,21 @@ const TopNav = () => {
           justifyContent: 'space-between'
         }}
       >
-        <Anchor component={Link} to="/">
-          <Image src={Logo} width="40px" alt="logo" />
-        </Anchor>
         <MobileMenu />
         <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
-          <Group mr="lg" spacing="xl">
-            {/* <NavLink to="/projects">Projects</NavLink> */}
+          <Group mr="lg" spacing="2rem">
+            <NavLink to="/">Home</NavLink>
             <NavLink to="/blog">Blog</NavLink>
+            {/* <NavLink to="/projects">Projects</NavLink> */}
           </Group>
         </MediaQuery>
+        <ActionIcon onClick={() => toggleColorScheme()}>
+          {colorScheme === 'dark' ? (
+            <IconSun size={18} />
+          ) : (
+            <IconMoon size={18} />
+          )}
+        </ActionIcon>
       </Box>
     </Header>
   );

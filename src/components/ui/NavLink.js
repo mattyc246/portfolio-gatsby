@@ -7,7 +7,8 @@ import { colors } from '../../styles/colors';
 const StyledLink = styled(Link)`
   position: relative;
   z-index: 1;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) =>
+    theme.colorScheme === 'dark' ? theme.white : theme.black};
   text-decoration: none;
   font-family: 'Roboto Mono', 'Monaco', monospace;
   font-size: ${({ theme }) => theme.fontSizes.sm}px;
@@ -26,6 +27,10 @@ const StyledLink = styled(Link)`
     transition: all 0.2s ease-in-out;
   }
 
+  :hover {
+    color: ${({ theme }) => theme.white};
+  }
+
   :hover::before {
     transform: scaleY(1);
     background-color: ${colors.pink};
@@ -36,6 +41,7 @@ const StyledLink = styled(Link)`
       transform: scaleY(1);
       background-color: ${colors.purple};
     }
+    color: ${({ theme }) => theme.white};
   }
 `;
 

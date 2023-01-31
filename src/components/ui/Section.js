@@ -28,7 +28,6 @@ const StyledTitle = styled(Title)`
   }
   ::before,
   ::after {
-    /* border-color: inherit; */
     content: '';
     position: absolute;
     width: 10px;
@@ -44,10 +43,13 @@ const Section = forwardRef((props, ref) => {
       ref={ref}
       component="section"
       sx={{
+        margin: '0 auto',
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
-        minHeight: minHeight || '100vh'
+        minHeight: minHeight || '100vh',
+        maxWidth: '960px',
+        padding: '1rem'
       }}
     >
       {title && (
@@ -69,6 +71,7 @@ const Section = forwardRef((props, ref) => {
         </Box>
       )}
       {content}
+      <div className="wave"></div>
     </Box>
   );
 });
