@@ -37,14 +37,14 @@ const MobileMenu = () => {
                 Home
               </NavLink>
             </Center>
-            {/* <Center>
-              <NavLink onClick={() => setIsOpen(false)} to="/projects">
-                Projects
-              </NavLink>
-            </Center> */}
             <Center>
               <NavLink onClick={() => setIsOpen(false)} to="/blog">
                 Blog
+              </NavLink>
+            </Center>
+            <Center>
+              <NavLink onClick={() => setIsOpen(false)} to="/projects">
+                Projects
               </NavLink>
             </Center>
           </Stack>

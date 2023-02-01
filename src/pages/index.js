@@ -7,9 +7,10 @@ import { Divider } from '@mantine/core';
 import HeaderSection from '../components/home/HeaderSection';
 import ExperienceSection from '../components/home/ExperienceSection';
 import LatestPostsSection from '../components/home/LatestPostsSection';
+import ProjectsSection from '../components/home/ProjectsSection';
 
 const Index = ({ data }) => {
-  const { datoCmsHome, allDatoCmsBlog } = data;
+  const { datoCmsHome, datoCmsWork, allDatoCmsBlog } = data;
 
   return (
     <>
@@ -18,6 +19,8 @@ const Index = ({ data }) => {
       />
       <Divider size="xs" mx="2rem" />
       <LatestPostsSection posts={allDatoCmsBlog?.edges} />
+      <Divider size="xs" mx="2rem" />
+      <ProjectsSection projects={datoCmsWork?.projects} />
       <Divider size="xs" mx="2rem" />
       <ExperienceSection experiences={datoCmsHome?.workExperience} />
       <Divider size="xs" mx="2rem" />
@@ -61,6 +64,17 @@ export const pageQuery = graphql`
             }
           }
         }
+      }
+    }
+    datoCmsWork {
+      projects {
+        coverImage {
+          url
+        }
+        description
+        projectName
+        siteUrl
+        originalId
       }
     }
   }

@@ -27,7 +27,7 @@ const LatestPostsSection = ({ posts }) => {
       </Group>
       <Carousel
         slideSize={matches ? '50%' : '75%'}
-        height={350}
+        height={325}
         slideGap="lg"
         align="start"
         withControls={false}
@@ -61,9 +61,9 @@ const LatestPostsSection = ({ posts }) => {
                         <Text component="span">&bull;</Text>
                         <Text size="sm">{post?.publishedDate}</Text>
                       </Group>
+                      <Text mt="md">{post?.blurb}</Text>
                     </Box>
                     <Box>
-                      <Text mt="md">{post?.blurb}</Text>
                       <MovingGradientButton
                         component={Link}
                         to={`/blog/${post?.slug}`}
