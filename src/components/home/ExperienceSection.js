@@ -21,6 +21,7 @@ const ExperienceSection = ({ experiences }) => {
         {experiences?.map((experience, index) => {
           return (
             <Timeline.Item
+              key={experience?.id}
               title={experience?.company}
               bulletSize={16}
               bullet={
