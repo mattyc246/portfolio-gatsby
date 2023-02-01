@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Box, Stack, Text, Title } from '@mantine/core';
+import { Box, Stack, Title } from '@mantine/core';
+
+import DangerousHtml from '../ui/DangerousHtml';
 
 const HeaderSection = ({ introduction }) => {
   return (
@@ -9,7 +11,7 @@ const HeaderSection = ({ introduction }) => {
         <Title
           order={1}
           variant="gradient"
-          gradient={{ from: 'grape', to: 'pink', deg: 90 }}
+          gradient={{ from: 'orange', to: 'grape', deg: 90 }}
           sx={{
             fontSize: '4rem'
           }}
@@ -19,20 +21,18 @@ const HeaderSection = ({ introduction }) => {
         <Title
           order={2}
           variant="gradient"
-          gradient={{ from: 'teal', to: 'orange', deg: 90 }}
+          gradient={{ from: 'lime', to: 'grape', deg: 125 }}
           sx={{
             fontSize: '2rem'
           }}
         >
           Software Developer.
         </Title>
-        <Text
-          px="4px"
-          size="sm"
-          sx={{ maxWidth: '600px', whiteSpace: 'pre-wrap' }}
-        >
-          {introduction}
-        </Text>
+        <DangerousHtml
+          dangerouslySetInnerHTML={{
+            __html: introduction
+          }}
+        />
       </Stack>
     </Box>
   );

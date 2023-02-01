@@ -12,9 +12,11 @@ const Index = ({ data }) => {
 
   return (
     <>
-      <HeaderSection introduction={datoCmsHome?.introduction} />
+      <HeaderSection
+        introduction={datoCmsHome?.introductionNode?.childMarkdownRemark?.html}
+      />
       <Divider size="sm" />
-      <ExperienceSection />
+      <ExperienceSection experiences={datoCmsHome?.workExperience} />
       <Divider size="sm" />
     </>
   );
@@ -25,19 +27,17 @@ export default Index;
 export const pageQuery = graphql`
   query HomeQuery {
     datoCmsHome {
-      introduction
-      aboutMeNode {
+      introductionNode {
         childMarkdownRemark {
           html
         }
       }
-      aboutMeImage {
-        gatsbyImageData(width: 500, height: 500, placeholder: BLURRED)
-      }
-      contactMessageNode {
-        childMarkdownRemark {
-          html
-        }
+      workExperience {
+        company
+        endDate(formatString: "Do MMM YYYY")
+        startDate(formatString: "Do MMM YYYY")
+        jobPosition
+        id
       }
     }
   }

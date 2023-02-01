@@ -17,20 +17,20 @@ const StyledTitle = styled(Title)`
       theme.colors[gradient.from][theme.primaryShade[theme.colorScheme]]};
     top: -14px;
     left: -22px;
-    border-left: 5px solid
+    border-left: 2px solid
       ${({ gradient, theme }) =>
         theme.colors[gradient.from][theme.primaryShade[theme.colorScheme]]};
-    border-top: 5px solid
+    border-top: 2px solid
       ${({ gradient, theme }) =>
         theme.colors[gradient.from][theme.primaryShade[theme.colorScheme]]};
   }
   ::after {
     bottom: -14px;
     right: -22px;
-    border-right: 5px solid
+    border-right: 2px solid
       ${({ gradient, theme }) =>
         theme.colors[gradient.to][theme.primaryShade[theme.colorScheme]]};
-    border-bottom: 5px solid
+    border-bottom: 2px solid
       ${({ gradient, theme }) =>
         theme.colors[gradient.to][theme.primaryShade[theme.colorScheme]]};
   }

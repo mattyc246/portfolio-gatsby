@@ -9,7 +9,7 @@ import {
 
 const BottomFooter = () => {
   return (
-    <Footer pb="md" withBorder={false}>
+    <Footer pt="2rem" pb="md" withBorder={false}>
       <Center>
         <Stack align="center">
           <Text size="xs" sx={{ fontFamily: 'Roboto Mono, Monaco, monospace' }}>
