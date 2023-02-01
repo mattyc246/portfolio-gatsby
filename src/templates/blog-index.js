@@ -5,20 +5,10 @@ import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { IconArrowLeft, IconArrowRight } from '@tabler/icons';
 
-import {
-  Anchor,
-  Button,
-  Box,
-  Container,
-  Divider,
-  Group,
-  Stack,
-  Text,
-  Title
-} from '@mantine/core';
+import { Anchor, Box, Divider, Group, Stack, Text, Title } from '@mantine/core';
 
 import BlogCard from '../components/blog/BlogCard';
-import Section from '../components/ui/Section';
+import MovingGradientButton from '../components/ui/MovingGradientButton';
 
 const StyledAnchor = styled(Anchor)`
   color: ${({ theme }) => theme.colors.orange[5]};
@@ -50,87 +40,82 @@ const Blog = ({ data, pageContext }) => {
   const nextPage = `/blog/page-${(currentPage + 1).toString()}`;
 
   return (
-    <Container>
-      <Section
-        minHeight="30vh"
-        content={
-          <>
-            <Stack my="4rem" spacing="xs">
-              <Title order={1} color="orange.5" sx={{ fontSize: '4rem' }}>
-                Blog.
-              </Title>
-              <Group noWrap>
-                <Avatar image={avatarImage} />
-                <Box style={{ flex: 1 }}>
-                  <Text size="lg" px="4px">
-                    Personal blog by{' '}
-                    <StyledAnchor
-                      href="https://www.github.com/mattyc246"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      Matthew Cross
-                    </StyledAnchor>
-                  </Text>
-                  <Text size="md" px="4px">
-                    A place for my thoughts, the occasional tutorial and some
-                    unpopular opinions.
-                  </Text>
-                </Box>
-              </Group>
-            </Stack>
-            <Divider color="orange.5" />
-            <Stack my="4rem" spacing="3rem">
-              {allDatoCmsBlog?.edges?.map(({ node: page }) => {
-                return (
-                  <BlogCard
-                    key={page?.originalId}
-                    slug={page?.slug}
-                    publishedDate={page?.publishedDate}
-                    readingTime={
-                      page?.bodyNode?.childMarkdownRemark?.fields?.readingTime
-                        ?.text
-                    }
-                    blurb={page?.blurb}
-                    title={page?.title}
-                  />
-                );
-              })}
-            </Stack>
-            <Group mb="4rem" position="apart">
-              {!isFirst ? (
-                <Button
-                  component={Link}
-                  to={prevPage}
-                  leftIcon={<IconArrowLeft />}
-                  variant="subtle"
-                  color="orange.5"
-                  size="md"
-                >
-                  Previous Page
-                </Button>
-              ) : (
-                <Box />
-              )}
-              {!isLast ? (
-                <Button
-                  component={Link}
-                  to={nextPage}
-                  rightIcon={<IconArrowRight />}
-                  variant="subtle"
-                  color="orange.5"
-                  size="md"
-                >
-                  Next Page
-                </Button>
-              ) : (
-                <Box />
-              )}
-            </Group>
-          </>
-        }
-      />
-    </Container>
+    <Box px="xl" py="2rem">
+      <Stack my="4rem" spacing="xs">
+        <Title
+          order={1}
+          variant="gradient"
+          gradient={{ from: 'grape', to: 'pink', deg: 90 }}
+          sx={{
+            fontSize: '4rem'
+          }}
+        >
+          Blog.
+        </Title>
+        <Group noWrap>
+          <Avatar image={avatarImage} />
+          <Box style={{ flex: 1 }}>
+            <Text size="lg" px="4px">
+              Personal blog by{' '}
+              <StyledAnchor
+                href="https://www.github.com/mattyc246"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Matthew Cross
+              </StyledAnchor>
+            </Text>
+            <Text size="md" px="4px">
+              A place for my thoughts, the occasional tutorial and some
+              unpopular opinions.
+            </Text>
+          </Box>
+        </Group>
+      </Stack>
+      <Divider size="xs" />
+      <Stack my="4rem" spacing="3rem">
+        {allDatoCmsBlog?.edges?.map(({ node: page }) => {
+          return (
+            <BlogCard
+              key={page?.originalId}
+              slug={page?.slug}
+              publishedDate={page?.publishedDate}
+              readingTime={
+                page?.bodyNode?.childMarkdownRemark?.fields?.readingTime?.text
+              }
+              blurb={page?.blurb}
+              title={page?.title}
+            />
+          );
+        })}
+      </Stack>
+      <Group mb="4rem" position="apart">
+        {!isFirst ? (
+          <MovingGradientButton
+            component={Link}
+            to={prevPage}
+            leftIcon={<IconArrowLeft />}
+            size="md"
+          >
+            Previous Page
+          </MovingGradientButton>
+        ) : (
+          <Box />
+        )}
+        {!isLast ? (
+          <MovingGradientButton
+            component={Link}
+            to={nextPage}
+            rightIcon={<IconArrowRight />}
+            size="md"
+          >
+            Next Page
+          </MovingGradientButton>
+        ) : (
+          <Box />
+        )}
+      </Group>
+    </Box>
   );
 };
 

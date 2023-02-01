@@ -26,7 +26,7 @@ const TopNav = () => {
         }}
       >
         <MobileMenu />
-        <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
           <Group mr="lg" spacing="2rem">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/blog">Blog</NavLink>

@@ -10,8 +10,7 @@ const StyledLink = styled(Link)`
   color: ${({ theme }) =>
     theme.colorScheme === 'dark' ? theme.white : theme.black};
   text-decoration: none;
-  font-family: 'Roboto Mono', 'Monaco', monospace;
-  font-size: ${({ theme }) => theme.fontSizes.sm}px;
+  font-size: ${({ theme }) => theme.fontSizes.md}px;
 
   ::before {
     content: '';

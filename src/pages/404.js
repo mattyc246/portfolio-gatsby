@@ -1,8 +1,10 @@
 import * as React from 'react';
 
-import { Box, Button, Center, Stack, Text } from '@mantine/core';
+import { Box, Center, Stack, Text } from '@mantine/core';
 
+import MovingGradientButton from '../components/ui/MovingGradientButton';
 import Section from '../components/ui/Section';
+
 import { navigate } from 'gatsby';
 
 const NotFoundPage = () => {
@@ -16,7 +18,7 @@ const NotFoundPage = () => {
               weight={800}
               size="7rem"
               variant="gradient"
-              gradient={{ from: 'orange.7', to: 'orange.2', deg: 45 }}
+              gradient={{ from: 'orange', to: 'grape', deg: 90 }}
               mb="-1.5rem"
             >
               404
@@ -30,14 +32,9 @@ const NotFoundPage = () => {
               Page Not Found
             </Text>
             <Box>
-              <Button
-                onClick={() => navigate('/')}
-                my="lg"
-                variant="gradient"
-                gradient={{ from: 'orange.7', to: 'orange.4' }}
-              >
+              <MovingGradientButton onClick={() => navigate('/')} my="lg">
                 Home
-              </Button>
+              </MovingGradientButton>
             </Box>
           </Stack>
         </Center>
