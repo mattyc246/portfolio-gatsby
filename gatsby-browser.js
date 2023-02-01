@@ -1,15 +1,10 @@
 import React from 'react';
 import './src/styles/global.css';
-
-import { MantineProvider } from '@mantine/core';
-import { themeObject } from './src/styles/theme';
+import 'prism-themes/themes/prism-one-dark.css';
 
 import Layout from './src/components/Layout';
 
 export const wrapRootElement = ({ element }) => {
-  return (
-    <MantineProvider theme={themeObject} withNormalizeCSS withGlobalStyles>
-      <Layout>{element}</Layout>
-    </MantineProvider>
-  );
+  console.log(element);
+  return <Layout>{element}</Layout>;
 };

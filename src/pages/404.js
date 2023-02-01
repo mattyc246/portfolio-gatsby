@@ -1,49 +1,48 @@
-import * as React from "react"
-import { Link } from "gatsby"
+import * as React from 'react';
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
+import { Box, Center, Stack, Text } from '@mantine/core';
 
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
+import MovingGradientButton from '../components/ui/MovingGradientButton';
+import Section from '../components/ui/Section';
+
+import { navigate } from 'gatsby';
 
 const NotFoundPage = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
-  )
-}
+    <Section
+      minHeight="calc(100vh - 180px)"
+      content={
+        <Center>
+          <Stack align="center" spacing="sm">
+            <Text
+              weight={800}
+              size="7rem"
+              variant="gradient"
+              gradient={{ from: 'orange', to: 'grape', deg: 90 }}
+              mb="-1.5rem"
+            >
+              404
+            </Text>
+            <Text
+              size="2rem"
+              weight={600}
+              px="4px"
+              sx={{ fontFamily: 'Roboto Mono, Monaco, monospace' }}
+            >
+              Page Not Found
+            </Text>
+            <Box>
+              <MovingGradientButton onClick={() => navigate('/')} my="lg">
+                Home
+              </MovingGradientButton>
+            </Box>
+          </Stack>
+        </Center>
+      }
+    />
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;
 
-export const Head = () => <title>Not found</title>
+export const Head = () => <title>Not found</title>;

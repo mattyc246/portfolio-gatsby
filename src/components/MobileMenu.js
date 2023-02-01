@@ -16,12 +16,12 @@ const MobileMenu = () => {
 
   return (
     <>
-      <MediaQuery largerThan="md" styles={{ display: 'none' }}>
+      <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
         <Group mr="lg" spacing="xl">
           <Burger onClick={() => setIsOpen(true)} size="sm" color="orange" />
         </Group>
       </MediaQuery>
-      <MediaQuery largerThan="md" styles={{ display: 'none' }}>
+      <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
         <Drawer
           padding="lg"
           opened={isOpen}
@@ -37,11 +37,11 @@ const MobileMenu = () => {
                 Home
               </NavLink>
             </Center>
-            <Center>
+            {/* <Center>
               <NavLink onClick={() => setIsOpen(false)} to="/projects">
                 Projects
               </NavLink>
-            </Center>
+            </Center> */}
             <Center>
               <NavLink onClick={() => setIsOpen(false)} to="/blog">
                 Blog

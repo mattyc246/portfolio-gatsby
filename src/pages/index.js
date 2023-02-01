@@ -1,213 +1,71 @@
-import React, { useRef } from 'react';
+import React from 'react';
+
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-import {
-  IconBrowser,
-  IconServer,
-  IconDatabase,
-  IconBrandOpenSource
-} from '@tabler/icons';
+import { Divider } from '@mantine/core';
 
-import {
-  Box,
-  Button,
-  Card,
-  Center,
-  Container,
-  Grid,
-  Stack,
-  Tabs,
-  Text,
-  Title
-} from '@mantine/core';
+import HeaderSection from '../components/home/HeaderSection';
+import ExperienceSection from '../components/home/ExperienceSection';
+import LatestPostsSection from '../components/home/LatestPostsSection';
 
-import BackendStack from '../components/BackendStack';
-import DangerousHtml from '../components/ui/DangerousHtml';
-import DatabaseStack from '../components/DatabaseStack';
-import FrontendStack from '../components/FrontendStack';
-import Section from '../components/ui/Section';
-import ServicesStack from '../components/ServicesStack';
-
-import { useMediaQuery } from '@mantine/hooks';
-
-const IndexPage = ({ data }) => {
-  const { datoCmsHome } = data;
-  const techStackRef = useRef(null);
-  const aboutImage = getImage(datoCmsHome.aboutMeImage);
-  const matches = useMediaQuery('(min-width: 980px)');
-
-  const scrollIntoView = (ref) => {
-    ref?.current?.scrollIntoView({ behaviour: 'smooth' });
-  };
+const Index = ({ data }) => {
+  const { datoCmsHome, allDatoCmsBlog } = data;
 
   return (
-    <Container>
-      <Section
-        minHeight="90vh"
-        content={
-          <Stack my="4rem" spacing="xs">
-            <Text
-              size="md"
-              color="indigo.2"
-              px="4px"
-              sx={{ fontFamily: 'Roboto Mono, Monaco, monospace' }}
-            >
-              Hello, my name is
-            </Text>
-            <Title order={1} color="orange.5" sx={{ fontSize: '4rem' }}>
-              Matthew Cross.
-            </Title>
-            <Title order={2} color="orange.3" sx={{ fontSize: '4rem' }}>
-              Full Stack Software Developer.
-            </Title>
-            <Text
-              px="4px"
-              size="md"
-              sx={{ maxWidth: '600px', whiteSpace: 'pre-wrap' }}
-            >
-              {datoCmsHome?.introduction}
-            </Text>
-            <Box>
-              <Button
-                onClick={() => scrollIntoView(techStackRef)}
-                my="lg"
-                variant="gradient"
-                gradient={{ from: 'orange.7', to: 'orange.4' }}
-              >
-                See what tech I use
-              </Button>
-            </Box>
-          </Stack>
-        }
+    <>
+      <HeaderSection
+        introduction={datoCmsHome?.introductionNode?.childMarkdownRemark?.html}
       />
-      <Section
-        minHeight="100vh"
-        title="About Me"
-        fullWidth
-        content={
-          <Grid gutter="lg">
-            <Grid.Col xs={12} md={6}>
-              <Center sx={{ height: '100%' }}>
-                <DangerousHtml
-                  dangerouslySetInnerHTML={{
-                    __html: datoCmsHome?.aboutMeNode?.childMarkdownRemark?.html
-                  }}
-                />
-              </Center>
-            </Grid.Col>
-            <Grid.Col xs={12} md={6}>
-              <Center p="lg">
-                <Card shadow="lg">
-                  <GatsbyImage image={aboutImage} alt="me" />
-                </Card>
-              </Center>
-            </Grid.Col>
-          </Grid>
-        }
-      />
-      <Section
-        ref={techStackRef}
-        minHeight="80vh"
-        title="Tech Stacks"
-        fullWidth
-        content={
-          <Card my="lg" shadow="lg">
-            <Tabs
-              orientation={matches ? 'vertical' : 'horizontal'}
-              defaultValue="frontend"
-              color="orange"
-            >
-              <Tabs.List>
-                <Tabs.Tab value="frontend" icon={<IconBrowser size={16} />}>
-                  Frontend
-                </Tabs.Tab>
-                <Tabs.Tab value="backend" icon={<IconServer size={16} />}>
-                  Backend
-                </Tabs.Tab>
-                <Tabs.Tab value="database" icon={<IconDatabase size={16} />}>
-                  Database
-                </Tabs.Tab>
-                <Tabs.Tab
-                  value="services"
-                  icon={<IconBrandOpenSource size={16} />}
-                >
-                  Services
-                </Tabs.Tab>
-              </Tabs.List>
-              <Tabs.Panel value="frontend" p="lg">
-                <FrontendStack />
-              </Tabs.Panel>
-              <Tabs.Panel value="backend" p="lg">
-                <BackendStack />
-              </Tabs.Panel>
-              <Tabs.Panel value="database" p="lg">
-                <DatabaseStack />
-              </Tabs.Panel>
-              <Tabs.Panel value="services" p="lg">
-                <ServicesStack />
-              </Tabs.Panel>
-            </Tabs>
-          </Card>
-        }
-      />
-      <Section
-        minHeight="80vh"
-        fullWidth
-        content={
-          <Center>
-            <Stack align="center">
-              <Title order={3} color="orange.5" sx={{ fontSize: '3rem' }}>
-                Get In Touch.
-              </Title>
-              <Box sx={{ maxWidth: '500px', textAlign: 'center' }}>
-                <DangerousHtml
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      datoCmsHome?.contactMessageNode?.childMarkdownRemark?.html
-                  }}
-                />
-              </Box>
-              <Box>
-                <Button
-                  component="a"
-                  href="mailto:mattjcrossdev@gmail.com"
-                  my="lg"
-                  variant="gradient"
-                  gradient={{ from: 'orange.7', to: 'orange.4' }}
-                >
-                  Message Me
-                </Button>
-              </Box>
-            </Stack>
-          </Center>
-        }
-      />
-    </Container>
+      <Divider size="xs" mx="2rem" />
+      <LatestPostsSection posts={allDatoCmsBlog?.edges} />
+      <Divider size="xs" mx="2rem" />
+      <ExperienceSection experiences={datoCmsHome?.workExperience} />
+      <Divider size="xs" mx="2rem" />
+    </>
   );
 };
 
-export default IndexPage;
+export default Index;
 
 export const pageQuery = graphql`
   query HomeQuery {
     datoCmsHome {
-      introduction
-      aboutMeNode {
+      introductionNode {
         childMarkdownRemark {
           html
         }
       }
-      aboutMeImage {
-        gatsbyImageData(width: 500, height: 500, placeholder: BLURRED)
+      workExperience {
+        company
+        endDate(formatString: "Do MMM YYYY")
+        startDate(formatString: "Do MMM YYYY")
+        jobPosition
+        id
       }
-      contactMessageNode {
-        childMarkdownRemark {
-          html
+    }
+    allDatoCmsBlog(limit: 5, sort: { fields: publishedDate, order: DESC }) {
+      edges {
+        node {
+          originalId
+          blurb
+          publishedDate(formatString: "Do MMMM yyyy")
+          title
+          slug
+          bodyNode {
+            childMarkdownRemark {
+              fields {
+                readingTime {
+                  text
+                }
+              }
+            }
+          }
         }
       }
     }
   }
 `;
 
-export const Head = () => <title>Home Page</title>;
+export const Head = () => (
+  <title>Matthew Cross | Full Stack Web Developer</title>
+);

@@ -9,18 +9,16 @@ import {
 
 const BottomFooter = () => {
   return (
-    <Footer pb="md" withBorder={false}>
+    <Footer pt="2rem" pb="md" withBorder={false}>
       <Center>
         <Stack align="center">
-          <Text size="xs" sx={{ fontFamily: 'Roboto Mono, Monaco, monospace' }}>
-            Design & Code by Matthew Cross
-          </Text>
+          <Text size="xs">Design & Code by Matthew Cross</Text>
           <Group>
             <ActionIcon
               component="a"
               href="https://github.com/mattyc246"
               target="_blank"
-              color="orange.3"
+              color="grape"
               radius="md"
               variant="outline"
             >
@@ -30,7 +28,7 @@ const BottomFooter = () => {
               component="a"
               href="https://instagram.com/mattyc246"
               target="_blank"
-              color="orange.3"
+              color="grape"
               radius="md"
               variant="outline"
             >
@@ -40,7 +38,7 @@ const BottomFooter = () => {
               component="a"
               href="https://linkedin.com/in/matthew-cross"
               target="_blank"
-              color="orange.3"
+              color="grape"
               radius="md"
               variant="outline"
             >
