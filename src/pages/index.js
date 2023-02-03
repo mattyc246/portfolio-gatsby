@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { graphql } from 'gatsby';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 
 import { Divider } from '@mantine/core';
 
@@ -45,6 +46,9 @@ export const pageQuery = graphql`
         jobPosition
         id
       }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
     }
     allDatoCmsBlog(limit: 5, sort: { fields: publishedDate, order: DESC }) {
       edges {
@@ -80,6 +84,7 @@ export const pageQuery = graphql`
   }
 `;
 
-export const Head = () => (
-  <title>Matthew Cross | Full Stack Web Developer</title>
-);
+export const Head = ({ data }) => {
+  const { datoCmsHome } = data;
+  return <HelmetDatoCms seo={datoCmsHome.seoMetaTags} />;
+};

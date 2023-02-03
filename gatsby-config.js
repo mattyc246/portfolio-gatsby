@@ -4,8 +4,8 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `mantine-portfolio`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `matthewcross.me`,
+    siteUrl: `https://matthewcross.me`
   },
   plugins: [
     'gatsby-plugin-mantine',
