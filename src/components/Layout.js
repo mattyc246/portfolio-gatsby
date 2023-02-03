@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+import { StaticQuery, graphql } from 'gatsby';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
 
@@ -25,26 +27,43 @@ const Layout = ({ children }) => {
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
   return (
-    <ColorSchemeProvider
-      colorScheme={colorScheme}
-      toggleColorScheme={toggleColorScheme}
-    >
-      <MantineProvider
-        theme={{
-          colorScheme,
-          fontFamily:
-            "'Source Sans Pro', system-ui, -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
-        }}
-        withGlobalStyles
-        withNormalizeCSS
-      >
-        <MainWrap>
-          <TopNav toggleColorScheme={toggleColorScheme} />
-          <Content>{children}</Content>
-          <BottomFooter />
-        </MainWrap>
-      </MantineProvider>
-    </ColorSchemeProvider>
+    <StaticQuery
+      query={graphql`
+        query LayoutQuery {
+          datoCmsSite {
+            globalSeo {
+              siteName
+            }
+            faviconMetaTags {
+              ...GatsbyDatoCmsFaviconMetaTags
+            }
+          }
+        }
+      `}
+      render={(data) => (
+        <ColorSchemeProvider
+          colorScheme={colorScheme}
+          toggleColorScheme={toggleColorScheme}
+        >
+          <MantineProvider
+            theme={{
+              colorScheme,
+              fontFamily:
+                "'Source Sans Pro', system-ui, -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
+            }}
+            withGlobalStyles
+            withNormalizeCSS
+          >
+            <HelmetDatoCms favicon={data.datoCmsSite.faviconMetaTags} />
+            <MainWrap>
+              <TopNav toggleColorScheme={toggleColorScheme} />
+              <Content>{children}</Content>
+              <BottomFooter />
+            </MainWrap>
+          </MantineProvider>
+        </ColorSchemeProvider>
+      )}
+    />
   );
 };
 

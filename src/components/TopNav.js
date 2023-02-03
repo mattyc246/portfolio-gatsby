@@ -30,7 +30,7 @@ const TopNav = () => {
           <Group mr="lg" spacing="2rem">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/blog">Blog</NavLink>
-            {/* <NavLink to="/projects">Projects</NavLink> */}
+            <NavLink to="/projects">Projects</NavLink>
           </Group>
         </MediaQuery>
         <ActionIcon onClick={() => toggleColorScheme()}>
