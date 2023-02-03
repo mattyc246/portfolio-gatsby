@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import { Box, Divider, Grid, Stack, Text, Title } from '@mantine/core';
 
 import ProjectCard from '../components/projects/ProjectCard';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 
 const Projects = ({ data }) => {
   const { datoCmsWork } = data;
@@ -54,10 +55,14 @@ export const pageQuery = graphql`
         siteUrl
         originalId
       }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
     }
   }
 `;
 
-export const Head = () => {
-  return <title>Projects | Matthew Cross</title>;
+export const Head = ({ data }) => {
+  const { datoCmsWork } = data;
+  return <HelmetDatoCms seo={datoCmsWork.seoMetaTags} />;
 };

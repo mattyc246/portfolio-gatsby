@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
 
+import { Link, graphql } from 'gatsby';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 import { Box, Divider, Stack, Text, Title } from '@mantine/core';
 import { IconArrowLeft } from '@tabler/icons';
 
@@ -65,8 +66,16 @@ export const pageQuery = graphql`
           html
         }
       }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
     }
   }
 `;
 
 export default BlogPage;
+
+export const Head = ({ data }) => {
+  const { datoCmsBlog } = data;
+  return <HelmetDatoCms seo={datoCmsBlog.seoMetaTags} />;
+};
