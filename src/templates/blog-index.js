@@ -45,7 +45,7 @@ const Blog = ({ data, pageContext }) => {
         <Title
           order={1}
           variant="gradient"
-          gradient={{ from: 'grape', to: 'pink', deg: 90 }}
+          gradient={{ from: 'orange', to: 'grape', deg: 45 }}
           sx={{
             fontSize: '4rem'
           }}

@@ -14,7 +14,7 @@ const Projects = ({ data }) => {
         <Title
           order={1}
           variant="gradient"
-          gradient={{ from: 'grape', to: 'pink', deg: 90 }}
+          gradient={{ from: 'orange', to: 'grape', deg: 45 }}
           sx={{
             fontSize: '4rem'
           }}
@@ -22,8 +22,8 @@ const Projects = ({ data }) => {
           Projects.
         </Title>
         <Text size="md" px="4px">
-          Check out some of the projects I have created, they could be personal
-          pieces or freelance projects.
+          Here is a collection of some of the projects that I have worked on,
+          they can range from personal projects to freelance work.
         </Text>
       </Stack>
       <Divider size="xs" />
@@ -57,3 +57,7 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export const Head = () => {
+  return <title>Projects | Matthew Cross</title>;
+};
