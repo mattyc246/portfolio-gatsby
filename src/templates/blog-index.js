@@ -2,9 +2,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import { graphql, Link } from 'gatsby';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { IconArrowLeft, IconArrowRight } from '@tabler/icons';
-
 import { Anchor, Box, Divider, Group, Stack, Text, Title } from '@mantine/core';
 
 import BlogCard from '../components/blog/BlogCard';
@@ -128,6 +128,9 @@ export const pageQuery = graphql`
         alt
         gatsbyImageData(height: 150, width: 150, placeholder: BLURRED)
       }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
     }
     allDatoCmsBlog(
       sort: { fields: publishedDate, order: DESC }
@@ -156,4 +159,7 @@ export const pageQuery = graphql`
   }
 `;
 
-export const Head = () => <title>Blog | Matthew Cross</title>;
+export const Head = ({ data }) => {
+  const { datoCmsBlogpage } = data;
+  return <HelmetDatoCms seo={datoCmsBlogpage.seoMetaTags} />;
+};

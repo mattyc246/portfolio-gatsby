@@ -40,29 +40,31 @@ const Layout = ({ children }) => {
           }
         }
       `}
-      render={(data) => (
-        <ColorSchemeProvider
-          colorScheme={colorScheme}
-          toggleColorScheme={toggleColorScheme}
-        >
-          <MantineProvider
-            theme={{
-              colorScheme,
-              fontFamily:
-                "'Source Sans Pro', system-ui, -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
-            }}
-            withGlobalStyles
-            withNormalizeCSS
+      render={(data) => {
+        return (
+          <ColorSchemeProvider
+            colorScheme={colorScheme}
+            toggleColorScheme={toggleColorScheme}
           >
-            <HelmetDatoCms favicon={data.datoCmsSite.faviconMetaTags} />
-            <MainWrap>
-              <TopNav toggleColorScheme={toggleColorScheme} />
-              <Content>{children}</Content>
-              <BottomFooter />
-            </MainWrap>
-          </MantineProvider>
-        </ColorSchemeProvider>
-      )}
+            <MantineProvider
+              theme={{
+                colorScheme,
+                fontFamily:
+                  "'Source Sans Pro', system-ui, -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
+              }}
+              withGlobalStyles
+              withNormalizeCSS
+            >
+              <HelmetDatoCms favicon={data.datoCmsSite.faviconMetaTags} />
+              <MainWrap>
+                <TopNav toggleColorScheme={toggleColorScheme} />
+                <Content>{children}</Content>
+                <BottomFooter />
+              </MainWrap>
+            </MantineProvider>
+          </ColorSchemeProvider>
+        );
+      }}
     />
   );
 };
