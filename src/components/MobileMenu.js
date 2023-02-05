@@ -47,6 +47,11 @@ const MobileMenu = () => {
                 Projects
               </NavLink>
             </Center>
+            <Center>
+              <NavLink onClick={() => setIsOpen(false)} to="/contact">
+                Contact
+              </NavLink>
+            </Center>
           </Stack>
         </Drawer>
       </MediaQuery>
