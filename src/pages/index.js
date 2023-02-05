@@ -9,6 +9,7 @@ import HeaderSection from '../components/home/HeaderSection';
 import ExperienceSection from '../components/home/ExperienceSection';
 import LatestPostsSection from '../components/home/LatestPostsSection';
 import ProjectsSection from '../components/home/ProjectsSection';
+import ContactSection from '../components/home/ContactSection';
 
 const Index = ({ data }) => {
   const { datoCmsHome, datoCmsWork, allDatoCmsBlog } = data;
@@ -25,6 +26,7 @@ const Index = ({ data }) => {
       <Divider size="xs" mx="2rem" />
       <ExperienceSection experiences={datoCmsHome?.workExperience} />
       <Divider size="xs" mx="2rem" />
+      <ContactSection />
     </>
   );
 };
