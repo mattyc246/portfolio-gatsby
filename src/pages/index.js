@@ -52,7 +52,7 @@ export const pageQuery = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
-    allDatoCmsBlog(limit: 5, sort: { fields: publishedDate, order: DESC }) {
+    allDatoCmsBlog(limit: 5, sort: { publishedDate: DESC }) {
       edges {
         node {
           originalId

@@ -10,6 +10,12 @@ module.exports = {
   plugins: [
     'gatsby-plugin-mantine',
     {
+      resolve: 'gatsby-plugin-layout',
+      options: {
+        component: `${__dirname}/src/components/Layout`
+      }
+    },
+    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [

@@ -132,11 +132,7 @@ export const pageQuery = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
-    allDatoCmsBlog(
-      sort: { fields: publishedDate, order: DESC }
-      limit: $limit
-      skip: $skip
-    ) {
+    allDatoCmsBlog(sort: { publishedDate: DESC }, limit: $limit, skip: $skip) {
       edges {
         node {
           originalId
