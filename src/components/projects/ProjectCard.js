@@ -54,7 +54,7 @@ const ProjectCard = ({ project }) => {
               {project?.sourceUrl && (
                 <ActionIcon
                   component="a"
-                  href="https://github.com"
+                  href={project?.sourceUrl}
                   target="_blank"
                   onClick={(e) => e.stopPropagation()}
                   size="sm"
