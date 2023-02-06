@@ -54,6 +54,7 @@ export const pageQuery = graphql`
         projectName
         siteUrl
         originalId
+        languages
       }
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
