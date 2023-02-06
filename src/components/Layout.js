@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { StaticQuery, graphql } from 'gatsby';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
 import { useLocalStorage } from '@mantine/hooks';
 
 import TopNav from './TopNav';
@@ -55,12 +56,14 @@ const Layout = ({ children }) => {
               withGlobalStyles
               withNormalizeCSS
             >
-              <HelmetDatoCms favicon={data.datoCmsSite.faviconMetaTags} />
-              <MainWrap>
-                <TopNav toggleColorScheme={toggleColorScheme} />
-                <Content>{children}</Content>
-                <BottomFooter />
-              </MainWrap>
+              <NotificationsProvider position="bottom-center">
+                <HelmetDatoCms favicon={data.datoCmsSite.faviconMetaTags} />
+                <MainWrap>
+                  <TopNav toggleColorScheme={toggleColorScheme} />
+                  <Content>{children}</Content>
+                  <BottomFooter />
+                </MainWrap>
+              </NotificationsProvider>
             </MantineProvider>
           </ColorSchemeProvider>
         );
