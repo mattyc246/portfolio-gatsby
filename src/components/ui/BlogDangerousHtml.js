@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 const StyledBox = styled.div`
   p {
     padding: ${({ theme }) => `0 ${theme.spacing.sm}px`};
-    font-size: ${({ theme }) => theme.fontSizes.lg}px;
+    font-size: ${({ theme }) => theme.fontSizes.md}px;
     margin: 2rem 0;
     line-height: 26px;
   }
