@@ -1,6 +1,17 @@
 import React from 'react';
 
-import { Card, BackgroundImage, Box, Title, Text } from '@mantine/core';
+import {
+  Card,
+  BackgroundImage,
+  Box,
+  Title,
+  Text,
+  Stack,
+  Flex,
+  Group,
+  ActionIcon
+} from '@mantine/core';
+import { IconBrandGithub } from '@tabler/icons';
 
 const ProjectCard = ({ project }) => {
   return (
@@ -37,10 +48,46 @@ const ProjectCard = ({ project }) => {
           sx={{ zIndex: 0 }}
         ></Card>
         <Box p="lg" pos="relative" sx={{ zIndex: 1 }}>
-          <Title order={4}>{project?.projectName}</Title>
-          <Text mt="lg" size="sm" sx={{ whiteSpace: 'pre-wrap' }}>
-            {project?.description}
-          </Text>
+          <Stack justify="space-between">
+            <Group position="apart">
+              <Title order={4}>{project?.projectName}</Title>
+              {project?.sourceUrl && (
+                <ActionIcon
+                  component="a"
+                  href="https://github.com"
+                  target="_blank"
+                  onClick={(e) => e.stopPropagation()}
+                  size="sm"
+                  variant="outline"
+                >
+                  <IconBrandGithub size="16" />
+                </ActionIcon>
+              )}
+            </Group>
+            <Text size="sm" sx={{ whiteSpace: 'pre-wrap' }}>
+              {project?.description}
+            </Text>
+            <Flex align="center">
+              {project?.languages?.split(',').map((language, index) => {
+                return (
+                  <>
+                    <Text
+                      key={language}
+                      size="xs"
+                      weight="bold"
+                      align="center"
+                      sx={{ fontFamily: 'Roboto Mono' }}
+                    >
+                      {language}
+                    </Text>
+                    {index !== project?.languages?.split(',').length - 1 && (
+                      <Text px="xs">&bull;</Text>
+                    )}
+                  </>
+                );
+              })}
+            </Flex>
+          </Stack>
         </Box>
       </BackgroundImage>
     </Card>

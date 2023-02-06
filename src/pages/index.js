@@ -79,6 +79,7 @@ export const pageQuery = graphql`
         }
         description
         projectName
+        languages
         siteUrl
         originalId
       }
